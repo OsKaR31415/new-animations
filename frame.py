@@ -6,16 +6,32 @@ class Frame:
     def __init__(self, scr) -> None:
         # scr is a curses stdscr
         self.scr = scr
+        # Coordinates of the origin
+        # Theses can be modified, so that everything added will be shifted
+        self.X = 0
+        self.Y = 0
 
     def put_text(self, y: int, x: int, text: str, col: int =None) -> None:
+        Y, X = int(y) + self.Y, int(x) + self.X
         if col is None:
-            self.scr.addstr(int(y), int(x), str(text))
+            self.scr.addstr(Y, X, str(text))
         else:
-            self.scr.addstr(int(y), int(x), str(text), curses.color_pair(col))
+            self.scr.addstr(Y, X, str(text), curses.color_pair(col))
 
     def addstr(self, *args, **kwargs):
         """The original curses function."""
-        self.scr.addstr(*args, **kwargs)
+        y, x, *args = args
+        Y, X = int(y) + self.Y, int(x) + self.X
+        self.scr.addstr(Y, X, *args, **kwargs)
+
+    def move_origin(self, y: int, x: int):
+        """shift the origin of the frame, so that new things are shifted."""
+        self.Y = int(y)
+        self.X = int(x)
+
+    def reset_origin(self):
+        """Reset the origin so that everything is put on its real coordinate."""
+        move_origin(0, 0)
 
     def refresh(self):
         self.scr.refresh()
