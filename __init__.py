@@ -22,13 +22,10 @@ def main(scr):
     initialize_curses_colors()
     fr = Frame(scr)
 
-    coucou = Anim(fr,     fadein(8,  23, "coucou "))
-    ca_va = Anim(fr, appear_left(10, 23, "ca va ?"))
-    salut = Anim(fr,  appear_top(12, 23, "salut  "))
 
-    anim = coucou << salut >> ca_va & salut & ca_va & coucou
+    anim = Anim(fr) >> bounce("coucou")
 
-    play(fr, slow(anim, 2))
+    play(fr, slow(anim, 1))
 
 
 if __name__ == "__main__":
