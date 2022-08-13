@@ -27,6 +27,12 @@ class Frame:
         """Return a tuple (y, x) of the height and width of the frame."""
         return self.scr.getmaxyx()
 
+    def getheight(self):
+        return self.scr.getmaxyx()[0]
+
+    def getwidth(self):
+        return self.scr.getmaxyx()[1]
+
     def pause(self):
         # wait for keypress on getkey
         self.scr.nodelay(0)

@@ -22,15 +22,13 @@ def main(scr):
     initialize_curses_colors()
     fr = Frame(scr)
 
-    fadein_a = Anim(fr, fadein(2, 2, "salut"))
-    colored_a = text(2, 2, "salut", 73)
-    A = fadein_a & colored_a
-    fadein_b = Anim(fr, fadein(2, 4, "echo"))
-    colored_b = text(2, 4, "echo", 173)
-    B = fadein_b & colored_b
+    coucou = Anim(fr,     fadein(8,  23, "coucou "))
+    ca_va = Anim(fr, appear_left(10, 23, "ca va ?"))
+    salut = Anim(fr,  appear_top(12, 23, "salut  "))
 
-    anim = A >> B & wait(50) & B >> A
-    play(fr, anim)
+    anim = coucou << salut >> ca_va & salut & ca_va & coucou
+
+    play(fr, slow(anim, 2))
 
 
 if __name__ == "__main__":

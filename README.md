@@ -19,7 +19,7 @@ Since every animation in this tool is a generator of modifications to apply to t
 ### Simplicity and concision of syntax
 This tool has a particular syntax for _composing_ animations, that is to take two animations and to run them at the same time.
 For instance, if `anim_a` and `anim_b` are two animations, then `anim_a >> anim_b` is also an animation that consists  of both animations running at the same time.
-You certainly can compose more than two animations with : `anim_a >> anim_b >> anim_c >> anim_d ...`
+You obviously can compose more than two animations with : `anim_a >> anim_b >> anim_c >> anim_d ...`
 
 This "composition" operator adds an animation **under** the previous one. So, getting back to the example, the animation `anim_a >> anim_b`, is both animations composed, with `anim_b` **over** `anim_a`.
 This is why the `>>` operator can also be called _over_.

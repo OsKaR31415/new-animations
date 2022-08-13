@@ -3,6 +3,7 @@ from animations import Anim
 
 FRAME_DELAY = 0.02
 
+
 def play(frame, animation):
     # ensure that animation is an *Anim* object
     if isinstance(animation, Anim):
