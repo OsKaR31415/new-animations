@@ -22,7 +22,6 @@ def main(scr):
     initialize_curses_colors()
     fr = Frame(scr)
 
-
     anim = Anim(fr) >> bounce("coucou")
 
     play(fr, slow(anim, 1))

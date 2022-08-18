@@ -12,7 +12,8 @@ class Frame:
         self.Y = 0
 
     def put_text(self, y: int, x: int, text: str, col: int =None) -> None:
-        Y, X = int(y) + self.Y, int(x) + self.X
+        Y = (int(y) + self.Y) % self.getheight()
+        X = (int(x) + self.X) % self.gewidth()
         if col is None:
             self.scr.addstr(Y, X, str(text))
         else:

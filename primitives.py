@@ -299,7 +299,7 @@ def appear_left(y: int, x: int, string: str, col: int =None, delay: int =0):
 
 def bounce(string: str):
     anim = []
-    for x in reversed(range(0, 10)):
+    for x in reversed(range(0, 30)):
         anim.extend(text(1, int(10*cos(x)), string))
     return anim
 
