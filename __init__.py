@@ -2,7 +2,7 @@ import curses
 from frame import Frame
 from animations import Anim, AnimIterator
 from primitives import *
-from anim_player import play
+from anim_player import play, present
 
 from random import randint, choice
 
@@ -22,9 +22,13 @@ def main(scr):
     initialize_curses_colors()
     fr = Frame(scr)
 
-    anim = Anim(fr) >> bounce("coucou")
+    # anim = Anim(fr) >> bounce_left("coucou")
 
-    play(fr, slow(anim, 1))
+    anim = Anim(fr) >> fadein(3, 2, "coucou")
+    anim &= fadein(6, 7, "truc")
+    anim >>= bounce_left("test")
+
+    play(fr, slow(anim, 2))
 
 
 if __name__ == "__main__":

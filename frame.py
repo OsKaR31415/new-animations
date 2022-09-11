@@ -13,7 +13,7 @@ class Frame:
 
     def put_text(self, y: int, x: int, text: str, col: int =None) -> None:
         Y = (int(y) + self.Y) % self.getheight()
-        X = (int(x) + self.X) % self.gewidth()
+        X = (int(x) + self.X) % self.getwidth()
         if col is None:
             self.scr.addstr(Y, X, str(text))
         else:
@@ -55,7 +55,18 @@ class Frame:
         self.scr.nodelay(0)
         # ask for a key
         self.scr.getkey()
+        # reset the nodelay
+        self.scr.nodelay(1)
 
+    def getkey(self):
+        # wait for keypress on getkey
+        self.scr.nodelay(0)
+        # ask for a key
+        key = self.scr.getkey()
+        # reset the nodelay
+        self.scr.nodelay(1)
+        # return the pressed key
+        return key
 
     def copy(self):
         return Frame(self.scr)

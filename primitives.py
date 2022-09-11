@@ -297,11 +297,37 @@ def appear_left(y: int, x: int, string: str, col: int =None, delay: int =0):
 
 
 
+def bounce_left(string: str):
+    anim = []
+    for x in reversed(range(0, 200)):
+        x_pos = int(x / 5 * abs(cos((x**.99)/10)))
+        prev_x_pos = int((x + 1) / 5 * abs(cos(((x + 1)**.99)/10)))
+        anim.extend(over(
+            invisible(1, prev_x_pos, string),
+            text(1, x_pos, string)))
+    return anim
+
 def bounce(string: str):
     anim = []
-    for x in reversed(range(0, 30)):
-        anim.extend(text(1, int(10*cos(x)), string))
+    for x in range(0, 200):
+        x = x/10
+        anim.append([
+            lambda fr: fr.put_text(fr.getheight()//2, fr.getwidth()//2 - len(string)//2, string)
+            ])
     return anim
+
+
+# ╻ ╻╺┳╸╻╻  ╻╺┳╸╻ ╻
+# ┃ ┃ ┃ ┃┃  ┃ ┃ ┗┳┛
+# ┗━┛ ╹ ╹┗━╸╹ ╹  ╹
+# Functions that are mostly usefull for the system, not for the user
+
+def slide_number(current: int, total: int):
+    current = int(current)
+    total = int(total)
+    string = f"{current}/{total}"
+    return [[lambda frame: frame.put_text(0, frame.getwidth(),
+                                          string)]]
 
 
 # ╻ ╻╻┏━╸╻ ╻┏━╸┏━┓   ┏━┓┏━┓╺┳┓┏━╸┏━┓
