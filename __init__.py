@@ -22,11 +22,15 @@ def main(scr):
     initialize_curses_colors()
     fr = Frame(scr)
 
-    # anim = Anim(fr) >> bounce_left("coucou")
 
     anim = Anim(fr) >> fadein(3, 2, "coucou")
     anim &= fadein(6, 7, "truc")
-    anim >>= bounce_left("test")
+    anim >>= bounce_left(2, "test")
+    anim >>= repeat(5, appear_top(10, 10, "super !!!!!!!", 73))
+    anim >>= repeat(5, appear_left(5, 20, "génial", 172))
+    anim >>= Anim(fr) & wait(5) & bounce_left(1, "super chose")
+
+
 
     play(fr, slow(anim, 2))
 
